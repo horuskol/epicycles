@@ -1,5 +1,5 @@
 <template>
-    <g fill="none" :stroke="color" :transform="`translate(${origin.x}, ${origin.y}) rotate(${rotate}, ${r}, ${pr}) `">
+    <g fill="none" :stroke="color" stroke-width="5" :transform="`translate(${origin.x}, ${origin.y}) rotate(${rotate}, ${r}, ${pr}) `">
         <g :transform="`rotate(${-a}, ${center.x}, ${center.y})`">
             <line :x1="center.x" :x2="center.x" y1="0" :y2="center.y"/>
             <circle :cx="r" :cy="r" :r="r" fill="none"/>
