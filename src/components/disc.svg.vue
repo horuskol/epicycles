@@ -1,8 +1,8 @@
 <template>
-    <g fill="none" :stroke="color" stroke-width="5" :transform="`translate(${origin.x}, ${origin.y}) rotate(${rotate}, ${r}, ${pr}) `">
-        <g :transform="`rotate(${-a}, ${center.x}, ${center.y})`">
-            <line :x1="center.x" :x2="center.x" y1="0" :y2="center.y"/>
-            <circle :cx="r" :cy="r" :r="r" fill="none"/>
+    <g fill="none" :stroke="disc.color" stroke-width="5">
+        <g>
+            <line :x1="disc.center.x" :x2="disc.p.x" :y1="disc.center.y" :y2="disc.p.y"/>
+            <circle :cx="disc.center.x" :cy="disc.center.y" :r="disc.r" fill="none"/>
         </g>
     </g>
 </template>
@@ -11,41 +11,9 @@
 export default {
   name: 'Disc',
   props: {
-    px: {
-      type: Number,
+    disc: {
+      type: Object,
     },
-    py: {
-      type: Number,
-    },
-    pr: {
-      type: Number,
-    },
-    r: {
-      type: Number,
-    },
-    a: {
-      type: Number,
-    },
-    color: {
-      type: String,
-    }
-  },
-  computed: {
-    center() {
-      return {
-        x: this.r,
-        y: this.r,
-      }
-    },
-    origin() {
-      return {
-        x: this.px - this.r,
-        y: this.py - this.pr,
-      }
-    },
-    rotate() {
-      return this.a * (this.pr / this.r);
-    }
   }
 }
 </script>
