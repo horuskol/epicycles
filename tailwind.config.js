@@ -6,9 +6,9 @@ module.exports = {
   theme: {
     gridTemplateAreas: {
       'layout': [
-        '. . .',
-        '. center .',
-        '. . .'
+        '. .      .',
+        '. center controls',
+        '. .      controls'
       ],
     },
     gridTemplateColumns: {
