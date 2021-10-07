@@ -55,9 +55,9 @@ export default {
       timer: null,
       discs: [
         {r: 400, center: {x: 500, y: 500}, p: {x: 500, y: 500}, l: 0, a: 0, color: [255, 255, 255]},
-        {r: 200, center: {x: 0, y: 0}, p: {x: 0, y: 0}, l: 100, a: 0, color: [0, 0, 255], parent: 0},
-        {r: 100, center: {x: 0, y: 0}, p: {x: 0, y: 0}, l: 50, a: 0, color: [255, 0, 0], parent: 1},
-        {r: 50, center: {x: 0, y: 0}, p: {x: 0, y: 0}, l: 25, a: 0, color: [0, 255, 0], parent: 2},
+        {r: 200, center: {x: 0, y: 0}, p: {x: 0, y: 0}, l: 250, a: 0, color: [0, 0, 255], parent: 0},
+        {r: 100, center: {x: 0, y: 0}, p: {x: 0, y: 0}, l: 150, a: 0, color: [255, 0, 0], parent: 1},
+        {r: 50, center: {x: 0, y: 0}, p: {x: 0, y: 0}, l: 100, a: 0, color: [0, 255, 0], parent: 2},
       ],
       canvas: null,
       showCircles: true,
@@ -94,7 +94,7 @@ export default {
         this.calculate()
 
         this.angle += 0.25
-      }, 1)
+      }, 25)
     },
     calculate() {
       this.discs.forEach((disc, d, discs) => {
