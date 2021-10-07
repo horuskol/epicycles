@@ -8,32 +8,44 @@
         </canvas>
         <svg viewBox="0 0 1000 1000"
              xmlns="http://www.w3.org/2000/svg"
-             class="grid-in-center"
+             class="grid-in-center z-50"
              v-if="showCircles"
         >
             <circle :cx="center.x" :cy="center.y" :r="radius" fill="none" stroke="black" stroke-width="2"/>
 
-            <disc v-for="(disc, d) in discs" :key="d" :disc="disc"/>
+            <disc v-for="(disc, d) in discs" :key="d" :disc="disc" :selected="selectedDiscId === d" @click="discSelected(d)" />
         </svg>
 
         <div class="grid-in-controls flex flex-col">
-            <button class="border border-blue-500 rounded"
+            <button class="border border-blue-500 rounded m-2"
                     @click.prevent="showCircles = !showCircles">Show Circles
             </button>
 
             <button v-if="timer"
-                    class="border border-blue-500 rounded"
+                    class="border border-blue-500 rounded m-2"
                     @click.prevent="pause">Pause
             </button>
 
             <button v-if="!timer"
-                    class="border border-blue-500 rounded"
+                    class="border border-blue-500 rounded m-2"
                     @click.prevent="start">Start
             </button>
 
-            <button class="border border-blue-500 rounded"
+            <button class="border border-blue-500 rounded m-2"
                     @click.prevent="reset">Reset
             </button>
+
+            <form v-if="selectedDisc" @submit.prevent class="flex flex-col">
+                <label class="block m-2">
+                    Radius
+                    <input type="text" v-model="selectedDisc.r" />
+                </label>
+
+                <label class="block m-2">
+                    Point
+                    <input type="text" v-model="selectedDisc.l" />
+                </label>
+            </form>
         </div>
     </div>
 </template>
@@ -61,6 +73,15 @@ export default {
       ],
       canvas: null,
       showCircles: true,
+      selectedDiscId: null,
+    }
+  },
+  computed: {
+    selectedDisc() {
+      if (this.selectedDiscId !== null && this.discs[this.selectedDiscId] !== undefined) {
+        return this.discs[this.selectedDiscId]
+      }
+      return null
     }
   },
   mounted() {
@@ -129,6 +150,9 @@ export default {
           this.canvas.putImageData(pixel, Math.floor(disc.p.x / 2) - 1, Math.floor(disc.p.y / 2) - 1)
         }
       })
+    },
+    discSelected(d) {
+      this.selectedDiscId = d;
     }
   }
 }
