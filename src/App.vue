@@ -78,7 +78,7 @@ export default {
   },
   computed: {
     selectedDisc() {
-      if (this.selectedDiscId !== null && this.discs[this.selectedDiscId] !== undefined) {
+      if (this.selectedDiscId > 0 && this.discs[this.selectedDiscId] !== undefined) {
         return this.discs[this.selectedDiscId]
       }
       return null
